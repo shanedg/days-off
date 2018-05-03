@@ -23,16 +23,19 @@
     "webpack-cli": "2.1.2",
     "webpack-node-externals": "1.7.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "1.17.3"
+  },
   "browserslist": [
-    "> 0.1%",
-    "IE 10"
+    "> 0.1%"
   ],
   "scripts": {
     "build": "./node_modules/.bin/webpack --mode=development --env.development --progress",
     "build:stage": "./node_modules/.bin/webpack --mode=production --env.staging --progress",
     "build:prod": "./node_modules/.bin/webpack -p --mode=production --env.production",
-    "watch": "./node_modules/.bin/webpack --mode=development --env.development --watch"
+    "watch": "./node_modules/.bin/webpack --mode=development --env.development --watch",
+    "start": "./node_modules/nodemon/bin/nodemon.js dist/server.js",
+    "start:prod": "node dist/server.js"
   },
   "author": "",
   "license": "ISC"
