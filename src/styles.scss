@@ -1,0 +1,54 @@
+/**
+ * Would be cool to use tailwinds eventually,
+ * definitely overkill for this tho.
+ * Leaving these here for now.
+ */
+// @import "tailwindcss/preflight";
+// @import "tailwindcss/components";
+// @import "tailwindcss/utilities";
+
+body {
+  font-family: monospace;
+  margin: 0;
+  background: linear-gradient(45deg, lavender, antiquewhite);
+}
+
+.headline,
+.work,
+.contact {
+  padding: 0.5rem;
+}
+
+.headline {
+  background-color: lavender;
+}
+
+.work {
+  background-color: antiquewhite;
+
+  .company {
+    .role {
+      padding: 0 0 0 1rem;
+    }
+  }
+}
+
+.contact {
+  background-color: oldlace;
+}
+
+.page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 450px;
+  padding: 0.5rem;
+  width: 100vw;
+}
+
+::placeholder {
+  color: gray;
+}

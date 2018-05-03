@@ -1,0 +1,39 @@
+{
+  "name": "days-off",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "autoprefixer": "8.4.1",
+    "css-loader": "0.28.11",
+    "express": "4.16.3",
+    "extract-loader": "2.0.1",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
+    "file-loader": "1.1.11",
+    "fs": "0.0.1-security",
+    "html-loader": "0.5.5",
+    "https": "1.0.0",
+    "node-sass": "4.9.0",
+    "path": "0.12.7",
+    "postcss-loader": "2.1.4",
+    "sass-loader": "7.0.1",
+    "style-loader": "0.21.0",
+    "tailwindcss": "0.5.2",
+    "webpack": "4.6.0",
+    "webpack-cli": "2.1.2",
+    "webpack-node-externals": "1.7.2"
+  },
+  "devDependencies": {},
+  "browserslist": [
+    "> 0.1%",
+    "IE 10"
+  ],
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --mode=development --env.development --progress",
+    "build:stage": "./node_modules/.bin/webpack --mode=production --env.staging --progress",
+    "build:prod": "./node_modules/.bin/webpack -p --mode=production --env.production",
+    "watch": "./node_modules/.bin/webpack --mode=development --env.development --watch"
+  },
+  "author": "",
+  "license": "ISC"
+}
