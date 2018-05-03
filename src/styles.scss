@@ -7,48 +7,141 @@
 // @import "tailwindcss/components";
 // @import "tailwindcss/utilities";
 
+$breakpoint-small: 768px;
+
 body {
+  // background: linear-gradient(45deg, #FFFEFF, #F4B6C9, #FFFDBE);
+  // background: linear-gradient(45deg, #3f87a6, #ebf8e1, #f69d3c);
+  background: linear-gradient(80deg, #3f87a6, #ebf8e1, #f69d3c);
+  background-size: 600% 600%;
+
+  animation: daylight 60s ease infinite;
+
+  @keyframes daylight { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+  }
+  // background-color: #C3E9EE;
+  // color: #110004;
   font-family: monospace;
   margin: 0;
-  background: linear-gradient(45deg, lavender, antiquewhite);
-}
 
-.headline,
-.work,
-.contact {
-  padding: 0.5rem;
-}
-
-.headline {
-  background-color: lavender;
-}
-
-.work {
-  background-color: antiquewhite;
-
-  .company {
-    .role {
-      padding: 0 0 0 1rem;
-    }
+  &.no-js .headline,
+  &.no-js .work,
+  &.no-js .contact {
+    transform: translateX(0vw) translateY(0vh);
   }
 }
 
-.contact {
-  background-color: oldlace;
+h1 {
+  letter-spacing: 2px;
+}
+
+h1,h2 {
+  margin-top: 1rem;
+}
+
+h2, h3, h4 {
+  letter-spacing: 1px;
+}
+
+a, a:visited {
+  // color: #B1953A;
+  color: #000;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .page {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   margin: 0 auto;
-  max-width: 450px;
-  padding: 0.5rem;
+  // max-width: 450px;
+  padding: 0.5rem 0.5rem 0.5rem 0;
   width: 100vw;
-}
 
-::placeholder {
-  color: gray;
+  .headline,
+  .work,
+  .this-page,
+  .contact {
+    box-sizing: border-box;
+    padding: 1rem;
+    margin: 0 0 0.5rem 0;
+    // border-right: 3px solid #B1953A;
+    // background-color: palevioletred;
+    background-color: rgba(255,255,255,0.5);
+  }
+
+  .headline {
+    // background-color: lavender;
+    // border-top: 3px solid #B1953A;
+    transform: translate(-100vw, 0vh);
+    transition: transform 400ms ease-out, border-color 250ms ease-out 450ms;
+  }
+
+  .work {
+    // background-color: antiquewhite;
+    transform: translate(-100vw, 0vh);
+    transition: transform 400ms ease-out 150ms, border-color 250ms ease-out 600ms;
+
+    .company {
+      .role {
+        padding: 0 0 0 1rem;
+      }
+    }
+  }
+
+  .this-page {
+    transform: translate(-100vw, 0vh);
+    transition: transform 400ms ease-out 200ms, border-color 250ms ease-out 750ms;
+
+    & > div {
+      padding: 0 0 0 1rem;
+    }
+  }
+
+  .contact {
+    // background-color: oldlace;
+    // border-bottom: 3px solid #B1953A;
+    transform: translate(-100vw, 0vh);
+    transition: transform 400ms ease-out 300ms, border-color 250ms ease-out 900ms;
+    margin: 0;
+  }
+
+  &.fly-in {
+    .headline,
+    .work,
+    .this-page,
+    .contact {
+      transform: translate(0vw, 0vh);
+      // border-color: #63B3A1;
+      
+    }
+  }
+
+  @media (min-width: $breakpoint-small) {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+
+    .headline,
+    .work,
+    .this-page,
+    .contact {
+      margin: 0 1rem 0 0;
+      // padding: 2rem 0 0 0;
+      padding: 2rem 1rem 1rem 1rem;
+    }
+
+    .contact {
+      margin: 0;
+    }
+  }
 }

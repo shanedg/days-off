@@ -32,7 +32,7 @@ self.addEventListener('install', function(e) {
 
         var request = new Request(url, {
           // mode: 'no-cors'
-          // important to fetch only from server(s) supporting CORs without this option
+          // ^important to fetch only from server(s) supporting CORs without this option
         });
         return fetch(request).then(function(response) {
           if (response.status >= 400) {
@@ -69,7 +69,7 @@ self.addEventListener('activate', function(e) {
     console.log('activate event:', e);
   }
 
-  var asciiGreeting =
+  var asciiGreeting = '\n\n\n' +
   ' _                        _                  _   \n' +
   '| |                      | |                | |  \n' +
   '| |__   ___ _   _   _ __ | | __ _ _ __   ___| |_ \n' +
@@ -77,7 +77,7 @@ self.addEventListener('activate', function(e) {
   '| | | |  __/ |_| | | |_) | | (_| | | | |  __/ |_ \n' +
   '|_| |_|\\___|\\__, | | .__/|_|\\__,_|_| |_|\\___|\\__|\n' +
   '             __/ | | |                           \n' +
-  '            |___/  |_|                           \n';
+  '            |___/  |_|                           \n\n\n\n';
   console.log(asciiGreeting);
 
   var expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
@@ -124,8 +124,6 @@ self.addEventListener('fetch', function(e) {
           console.log('No response found in cache. About to fetch from network...');
         }
   
-        // event.request will always have the proper mode set ('cors, 'no-cors', etc.) so we don't
-        // have to hardcode 'no-cors' like we do when fetch()ing in the install handler.
         return fetch(e.request).then(function(response) {
           if (!PRODUCTION) {
             console.log('Response from network is:', response);

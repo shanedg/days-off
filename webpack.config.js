@@ -5,7 +5,9 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = (env, argv) => {
   return [{
-    // client-side JS
+    /*
+     * client.js
+     */
     plugins: [
       new webpack.DefinePlugin({
         'PRODUCTION': env.production ? true : false,
@@ -22,7 +24,9 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist')
     }
   },{
-    // service-worker.js (+polyfills)
+    /*
+     * service-worker.js (+polyfills)
+     */
     plugins: [
       new webpack.DefinePlugin({
         'PRODUCTION': env.production ? true : false,
@@ -40,7 +44,9 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist')
     }
   },{
-    // styles.css
+    /*
+     * styles.css
+     */
     context: path.resolve(__dirname, 'src'),
     entry: {
       styles: './styles.scss',
@@ -74,7 +80,9 @@ module.exports = (env, argv) => {
       ]
     }
   },{
-    // server.js
+    /*
+     * server.js
+     */
     target: 'node',
     node: false,
     externals: [nodeExternals()],
@@ -96,7 +104,9 @@ module.exports = (env, argv) => {
       filename: 'server.js'
     }
   },{
-    // index.html
+    /*
+     * index.html
+     */
     context: path.resolve(__dirname, 'src'),
     entry: {
       index: './index.html'
