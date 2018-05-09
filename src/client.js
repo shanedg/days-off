@@ -1,4 +1,5 @@
 (function () {
+  
   /*
    * everything we want to do right away
    */
@@ -9,27 +10,21 @@
         document.querySelector('.page').className += ' fly-in';
       }, 100);
 
-      window.addEventListener('resize', function(e) {
-        // console.log('resized..');
-        // setTimeout(function() {
-        //   var el = document.querySelector('.page.fly-in');
-        //   if (el) {
-        //     el.className = el.className.replace(/ ?fly-in/, '');
-        //   } else {
-        //     console.log('never flew back in');
-        //   }
-          
-        // }, 10);
-        // setTimeout(function() {
-        //   var el = document.querySelector('.page');
-        //   if (el) {
-        //     el.className += ' fly-in';
-        //   } else {
-        //     console.log('not found to fly-in again');
-        //   }
-          
-        // }, 20);
+      document.querySelector('.open').addEventListener('click', function(e) {
+        e.preventDefault();
+        var more = document.querySelector('.more-wrap');
+        if (more.className.indexOf(' active') === -1) {
+          more.className += ' active';
+        } else {
+          more.className = more.className.replace(' active', '');
+          menuScroll();
+        }
       });
+      
+      window.addEventListener('scroll', (e) => {
+        debounce(menuScroll, 5);
+      });
+
     });
   };
 
@@ -39,6 +34,42 @@
   var noJS = function noJS() {
     if (document.querySelector('body.no-js')) {
       document.querySelector('body.no-js').className = '';
+    }
+  };
+
+  /*
+   * throttle
+   */
+  var debounce = function debounce(callback, interval) {
+    if (window.debounceGlobal == null) {
+      window.debounceGlobal = setTimeout(callback, interval);
+    } else {
+      window.clearTimeout(window.debounceGlobal);
+      window.debounceGlobal = null;
+    }
+  };
+
+  /*
+   *
+   */
+  var menuScroll = function menuScroll() {
+    var windowScroll = window.scrollY;
+    var el = document.querySelector('.responsibilities');
+    var elScroll = el.offsetTop - 50;
+    var openEl = document.querySelector('.offscreen');
+
+    if (windowScroll > elScroll) {
+      console.log('windowScroll > elScroll');
+      if (openEl.className.indexOf(' min') === -1) {
+        var more = document.querySelector('.more-wrap');
+        more.className = more.className.replace(' active', '');
+        openEl.className += ' min';
+      }
+    } else {
+      console.log('windowScroll <= elScroll');
+      if (openEl.className.indexOf(' min') > -1) {
+        openEl.className = openEl.className.replace(' min', '');
+      }
     }
   };
 

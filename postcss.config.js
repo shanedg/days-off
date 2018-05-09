@@ -6,6 +6,7 @@ module.exports = {
      * Leaving this here for now.
      */
     // require('tailwindcss')('./tailwind.js'),
-    require('autoprefixer')
+    // require('autoprefixer')
+    process.env.NODE_ENV == 'production' && require('autoprefixer')
   ]
 }
