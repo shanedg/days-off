@@ -1,13 +1,8 @@
-/**
- * Would be cool to use tailwinds eventually,
- * definitely overkill for this tho.
- * Leaving these here for now.
- */
-// @import "tailwindcss/preflight";
-// @import "tailwindcss/components";
-// @import "tailwindcss/utilities";
-
 $breakpoint-small: 768px;
+
+html {
+  font-size: 16px;
+}
 
 body {
   background: linear-gradient(80deg, #3f87a6, #ebf8e1, #f69d3c);
@@ -28,6 +23,11 @@ body {
   &.no-js .contact {
     transform: translateX(0vw) translateY(0vh);
   }
+
+  @media (min-width: $breakpoint-small) {
+    background: linear-gradient(80deg, #3f87a6, #ebf8e1, #3f87a6);
+    background-size: 600% 600%;
+  }
 }
 
 h1 {
@@ -41,7 +41,6 @@ h1,h2 {
 
 h2, h3, h4 {
   letter-spacing: 1px;
-  border-bottom: 3px solid;
   margin: 0;
   padding: 1rem;
 }
@@ -57,8 +56,10 @@ a, a:visited {
 
 .page {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 0;
+
   min-height: 100vh;
   justify-content: center;
   margin: 0 auto;
@@ -81,125 +82,65 @@ a, a:visited {
   }
 
   .headline {
-    transform: translate(0vw, 100vh);
-    transition: transform 400ms ease-out, border-color 250ms ease-out 450ms;
+    position: relative;
+
+    .portrait {
+      position: absolute;
+      right: -10%;
+      bottom: -35%;
+      border-radius: 50%;
+      max-width: 45%;
+
+      box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+      }
+    }
   }
 
   .work {
-    transform: translate(0vw, 100vh);
-    transition: transform 400ms ease-out 150ms, border-color 250ms ease-out 600ms;
-
     .company {
-      border-right: 3px solid;
+      transition: all 400ms ease-out;
       .role {
         padding: 0 0 0 1rem;
       }
     }
   }
 
-  // .this-page {
-  //   transform: translate(0vw, 100vh);
-  //   transition: transform 400ms ease-out 200ms, border-color 250ms ease-out 750ms;
-
-  //   & > div {
-  //     padding: 0 0 0 1rem;
-  //   }
-  // }
-
-  .contact {
-    transform: translate(0vw, 100vh);
-    transition: transform 400ms ease-out 300ms, border-color 250ms ease-out 900ms;
-  }
-
-  &.fly-in {
-    .headline,
-    .work,
-    .this-page,
-    .contact {
-      transform: translate(0vw, 0vh);
-    }
-    .offscreen {
-      transform: translate(0vw, 0vh);
-    }
-  }
-
   @media (min-width: $breakpoint-small) {
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0;
+    grid-template-columns: repeat(3, 1fr);
+
+    padding: 2rem;
 
     .headline,
     .work,
     .this-page,
     .contact {
       padding: 1rem;
+      // background-color: #82c1db;
+      background: linear-gradient(80deg, #3f87a6, #ebf8e1);
+      background-size: 600% 600%;
+
+      animation: daylight 60s ease infinite;
+    }
+
+    .headline {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .work {
+      grid-column: 2 / 4;
+      grid-row: 1 / 4;
     }
 
     .contact {
       margin: 0;
-    }
-  }
 
-  .offscreen {
-    position: fixed;
-    top: 32%;
-    right: 1rem;
-    transform: translate(100vw, 0vh);
-    transition: transform 400ms ease-out 300ms, border-color 250ms ease-out 900ms;
-
-    @media (min-width: 375px) {
-      top: 25%;
-    }
-
-    @media (min-width: 414px) {
-      top: 28%;
-    }
-
-    .more-wrap {
-      // display: none;
-      // height: 0;
-      opacity: 0;
-      text-align: center;
-
-      &.active {
-        // display: block;
-        opacity: 1;
-      }
-
-      ul {
-        padding: 0 1rem;
-        list-style: none;
-      }
-    }
-
-    .open {
-      color: black;
-      display: block;
-      overflow: hidden;
-      font-size: 1.5rem;
-      border: 3px solid;
-      padding: 0.5rem 1.75rem;
-      margin: 0 0 0 auto;
-      background-color: antiquewhite;
-      transition: all 250ms ease-out;
-      text-align: right;
-
-      &:hover {
-        color: white;
-        border-color: black;
-        background: black;
-      }
-    }
-
-    &.min {
-      // .more-wrap {
-      //  
-      // }
-
-      .open {
-        padding: 0;
-        width: 14px;
-      }
+      grid-column: 1;
+      grid-row: 2;
     }
   }
 }
