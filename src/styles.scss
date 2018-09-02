@@ -1,17 +1,10 @@
-/**
- * Would be cool to use tailwinds eventually,
- * definitely overkill for this tho.
- * Leaving these here for now.
- */
-// @import "tailwindcss/preflight";
-// @import "tailwindcss/components";
-// @import "tailwindcss/utilities";
-
 $breakpoint-small: 768px;
 
+html {
+  font-size: 16px;
+}
+
 body {
-  // background: linear-gradient(45deg, #FFFEFF, #F4B6C9, #FFFDBE);
-  // background: linear-gradient(45deg, #3f87a6, #ebf8e1, #f69d3c);
   background: linear-gradient(80deg, #3f87a6, #ebf8e1, #f69d3c);
   background-size: 600% 600%;
 
@@ -19,11 +12,9 @@ body {
 
   @keyframes daylight { 
     0%{background-position:0% 50%}
-    50%{background-position:100% 51%}
+    40%{background-position:100% 51%}
     100%{background-position:0% 50%}
   }
-  // background-color: #C3E9EE;
-  // color: #110004;
   font-family: monospace;
   margin: 0;
 
@@ -32,10 +23,16 @@ body {
   &.no-js .contact {
     transform: translateX(0vw) translateY(0vh);
   }
+
+  @media (min-width: $breakpoint-small) {
+    background: linear-gradient(80deg, #3f87a6, #ebf8e1, #3f87a6);
+    background-size: 600% 600%;
+  }
 }
 
 h1 {
   letter-spacing: 2px;
+  font-size: 1.5rem;
 }
 
 h1,h2 {
@@ -44,10 +41,11 @@ h1,h2 {
 
 h2, h3, h4 {
   letter-spacing: 1px;
+  margin: 0;
+  padding: 1rem;
 }
 
 a, a:visited {
-  // color: #B1953A;
   color: #000;
   text-decoration: underline;
 
@@ -58,90 +56,91 @@ a, a:visited {
 
 .page {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 0;
+
   min-height: 100vh;
   justify-content: center;
   margin: 0 auto;
-  // max-width: 450px;
-  padding: 0.5rem 0.5rem 0.5rem 0;
+  padding: 0;
   width: 100vw;
+  position: relative;
 
   .headline,
   .work,
   .this-page,
   .contact {
     box-sizing: border-box;
-    padding: 1rem;
-    margin: 0 0 0.5rem 0;
-    // border-right: 3px solid #B1953A;
-    // background-color: palevioletred;
-    background-color: rgba(255,255,255,0.5);
+    padding: 2rem 1rem;
+
+    section p {
+      margin: 0;
+      padding: 1rem;
+    }
+
   }
 
   .headline {
-    // background-color: lavender;
-    // border-top: 3px solid #B1953A;
-    transform: translate(-100vw, 0vh);
-    transition: transform 400ms ease-out, border-color 250ms ease-out 450ms;
+    position: relative;
+
+    .portrait {
+      position: absolute;
+      right: -10%;
+      bottom: -35%;
+      border-radius: 50%;
+      max-width: 45%;
+
+      box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+      }
+    }
   }
 
   .work {
-    // background-color: antiquewhite;
-    transform: translate(-100vw, 0vh);
-    transition: transform 400ms ease-out 150ms, border-color 250ms ease-out 600ms;
-
     .company {
+      transition: all 400ms ease-out;
       .role {
         padding: 0 0 0 1rem;
       }
     }
   }
 
-  .this-page {
-    transform: translate(-100vw, 0vh);
-    transition: transform 400ms ease-out 200ms, border-color 250ms ease-out 750ms;
-
-    & > div {
-      padding: 0 0 0 1rem;
-    }
-  }
-
-  .contact {
-    // background-color: oldlace;
-    // border-bottom: 3px solid #B1953A;
-    transform: translate(-100vw, 0vh);
-    transition: transform 400ms ease-out 300ms, border-color 250ms ease-out 900ms;
-    margin: 0;
-  }
-
-  &.fly-in {
-    .headline,
-    .work,
-    .this-page,
-    .contact {
-      transform: translate(0vw, 0vh);
-      // border-color: #63B3A1;
-      
-    }
-  }
-
   @media (min-width: $breakpoint-small) {
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0;
+    grid-template-columns: repeat(3, 1fr);
+
+    padding: 2rem;
 
     .headline,
     .work,
     .this-page,
     .contact {
-      margin: 0 1rem 0 0;
-      // padding: 2rem 0 0 0;
-      padding: 2rem 1rem 1rem 1rem;
+      padding: 1rem;
+      // background-color: #82c1db;
+      background: linear-gradient(80deg, #3f87a6, #ebf8e1);
+      background-size: 600% 600%;
+
+      animation: daylight 60s ease infinite;
+    }
+
+    .headline {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .work {
+      grid-column: 2 / 4;
+      grid-row: 1 / 4;
     }
 
     .contact {
       margin: 0;
+
+      grid-column: 1;
+      grid-row: 2;
     }
   }
 }
